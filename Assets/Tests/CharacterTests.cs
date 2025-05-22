@@ -62,4 +62,16 @@ public class CharacterTests : InputTestFixture
         // Assert that 1 health point was lost due to the fall damage
         Assert.That(characterHealth.Health, Is.EqualTo(0.9f));
     }
+
+    [TearDown]
+    public void Teardown()
+    {
+        foreach(var gameObject in GameObject.FindObjectsOfType<GameObject>())
+        {
+            GameObject.Destroy(gameObject);
+        }
+
+        InputSystem.RemoveDevice(keyboard);
+    }
+    
 }
